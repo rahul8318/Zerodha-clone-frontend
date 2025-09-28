@@ -1,55 +1,323 @@
-/* Navbar.css */
-
+/* Zerodha Navbar Styles */
 .zerodha-navbar {
-  padding: 15px 0;
-  box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.05);
+  background-color: #ffffff;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  padding: 12px 0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 15px;
   position: sticky;
   top: 0;
-  z-index: 1020;
+  z-index: 1000;
 }
 
-.zerodha-navbar .navbar-brand {
-  padding: 0;
-  margin-right: 30px;
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.zerodha-navbar .nav-link {
-  color: #444 !important;
-  font-size: 14px;
-  font-weight: 500;
-  padding: 8px 15px !important;
-  margin: 0 2px;
+/* Brand Logo */
+.nav-brand {
+  padding: 8px 0;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.nav-brand img {
+  transition: opacity 0.2s ease;
+}
+
+.nav-brand:hover img {
+  opacity: 0.8;
+}
+
+/* Desktop Navigation */
+.nav-desktop {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 24px;
+}
+
+.nav-link {
+  color: #666;
+  text-decoration: none;
+  padding: 8px 12px;
   border-radius: 4px;
+  transition: all 0.2s ease;
+  font-weight: 400;
+}
+
+.nav-link:hover {
+  color: #387ed1;
+  background-color: #f8f9fa;
+}
+
+/* Auth Section */
+.nav-auth-section {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.user-section {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #4a5568;
+  font-size: 14px;
+}
+
+.user-welcome {
+  font-weight: 500;
+}
+
+.logout-btn {
+  background: #f8f9fa;
+  border: 2px solid #e2e8f0;
+  padding: 8px 16px;
+  border-radius: 6px;
+  color: #666;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.2s ease;
+  font-weight: 500;
+}
+
+.logout-btn:hover {
+  background: #e53e3e;
+  color: white;
+  border-color: #e53e3e;
+  transform: translateY(-1px);
+}
+
+.auth-buttons {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.auth-link {
+  padding: 8px 16px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  font-size: 14px;
+}
+
+.signup-link {
+  color: #666;
+  border: 2px solid #e2e8f0;
+  background: white;
+}
+
+.signup-link:hover {
+  background: #f8f9fa;
+  color: #387ed1;
+  border-color: #387ed1;
+  transform: translateY(-1px);
+}
+
+.login-link {
+  background: #387ed1;
+  color: white;
+  border: 2px solid #387ed1;
+}
+
+.login-link:hover {
+  background: #2c6cb8;
+  border-color: #2c6cb8;
+  transform: translateY(-1px);
+}
+
+/* Search Icon */
+.nav-search {
+  color: #666;
+  padding: 8px;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  border: 2px solid transparent;
+}
+
+.nav-search:hover {
+  color: #387ed1;
+  background: #f8f9fa;
+  border-color: #e2e8f0;
+}
+
+/* Mobile Toggle */
+.mobile-toggle {
+  display: none;
+  flex-direction: column;
+  background: none;
+  border: none;
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  gap: 4px;
+  padding: 0;
+}
+
+.mobile-toggle span {
+  width: 100%;
+  height: 2px;
+  background: #387ed1;
   transition: all 0.3s ease;
+  transform-origin: center;
 }
 
-.zerodha-navbar .nav-link:hover {
-  background-color: #f5f5f5;
-  color: #387ed1 !important;
+.mobile-toggle.open span:nth-child(1) {
+  transform: rotate(45deg) translate(6px, 6px);
 }
 
-.zerodha-navbar .navbar-toggler:focus {
-  box-shadow: none;
+.mobile-toggle.open span:nth-child(2) {
+  opacity: 0;
 }
 
-/* For the search and menu icons */
-.material-icons-outlined {
-  font-size: 20px;
-  vertical-align: middle;
+.mobile-toggle.open span:nth-child(3) {
+  transform: rotate(-45deg) translate(6px, -6px);
 }
 
-/* Mobile view adjustments */
-@media (max-width: 991.98px) {
+/* Mobile Navigation */
+.nav-mobile {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-top: 1px solid #e2e8f0;
+}
+
+.nav-mobile.open {
+  display: block;
+}
+
+.mobile-links {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.mobile-link {
+  color: #666;
+  text-decoration: none;
+  padding: 12px 16px;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  font-weight: 400;
+  border: 2px solid transparent;
+}
+
+.mobile-link:hover {
+  color: #387ed1;
+  background: #f8f9fa;
+  border-color: #e2e8f0;
+}
+
+.mobile-auth {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid #e2e8f0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.mobile-user {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  color: #4a5568;
+  font-size: 14px;
+}
+
+.mobile-logout {
+  background: #f8f9fa;
+  border: 2px solid #e2e8f0;
+  padding: 12px 16px;
+  border-radius: 6px;
+  color: #666;
+  cursor: pointer;
+  font-size: 14px;
+  text-align: center;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.mobile-logout:hover {
+  background: #e53e3e;
+  color: white;
+  border-color: #e53e3e;
+}
+
+.mobile-auth-link {
+  padding: 12px 16px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 500;
+  text-align: center;
+  transition: all 0.2s ease;
+  border: 2px solid #e2e8f0;
+}
+
+.mobile-auth-link:first-child {
+  background: white;
+  color: #666;
+}
+
+.mobile-auth-link:first-child:hover {
+  background: #f8f9fa;
+  color: #387ed1;
+  border-color: #387ed1;
+}
+
+.mobile-auth-link:last-child {
+  background: #387ed1;
+  color: white;
+  border-color: #387ed1;
+}
+
+.mobile-auth-link:last-child:hover {
+  background: #2c6cb8;
+  border-color: #2c6cb8;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .nav-desktop {
+    display: none;
+  }
+  
+  .mobile-toggle {
+    display: flex;
+  }
+  
+  .nav-container {
+    padding: 0 16px;
+  }
+  
   .zerodha-navbar {
-    padding: 10px 15px;
+    padding: 8px 0;
   }
-  
-  .zerodha-navbar .navbar-collapse {
-    padding-top: 15px;
-  }
-  
-  .zerodha-navbar .nav-link {
-    padding: 10px 15px !important;
-    margin: 2px 0;
+}
+
+@media (min-width: 769px) {
+  .nav-mobile {
+    display: none !important;
   }
 }

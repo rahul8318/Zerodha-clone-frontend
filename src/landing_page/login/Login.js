@@ -1,16 +1,27 @@
-import React, { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
-import "./SignUp.css";
+import React, { useState, useEffect } from "react";
+import { useNavigate, Link, useLocation } from "react-router-dom";
+import "./Login.css";
 
-function SignUp() {
+function Login() {
   const [formData, setFormData] = useState({
     username: "",
-    email: "",
     password: ""
   });
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState({});
+  const [message, setMessage] = useState("");
   const navigate = useNavigate();
+  const location = useLocation();
+
+  // Check for success message from signup redirect
+  useEffect(() => {
+    if (location.state?.message) {
+      setMessage(location.state.message);
+      // Clear the message after 5 seconds
+      const timer = setTimeout(() => setMessage(""), 5000);
+      return () => clearTimeout(timer);
+    }
+  }, [location.state]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -32,20 +43,10 @@ function SignUp() {
 
     if (!formData.username.trim()) {
       newErrors.username = "Username is required";
-    } else if (formData.username.length < 3) {
-      newErrors.username = "Username must be at least 3 characters";
-    }
-
-    if (!formData.email.trim()) {
-      newErrors.email = "Email is required";
-    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      newErrors.email = "Please enter a valid email address";
     }
 
     if (!formData.password) {
       newErrors.password = "Password is required";
-    } else if (formData.password.length < 6) {
-      newErrors.password = "Password must be at least 6 characters";
     }
 
     setErrors(newErrors);
@@ -58,24 +59,24 @@ function SignUp() {
     if (!validateForm()) return;
 
     setLoading(true);
+    setErrors({});
+
     try {
-      const res = await fetch("http://localhost:5000/register", {
+      const res = await fetch("http://localhost:5000/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
         credentials: "include",
       });
-      
+
       const data = await res.json();
       
       if (res.ok) {
-        // Show success message and redirect
+        // Login successful - redirect to home
         setLoading(false);
-        navigate("/login", { 
-          state: { message: "Registration successful! Please log in." } 
-        });
+        navigate("/", { replace: true });
       } else {
-        throw new Error(data.message || "Registration failed");
+        throw new Error(data.message || "Login failed");
       }
     } catch (err) {
       setLoading(false);
@@ -84,20 +85,28 @@ function SignUp() {
   };
 
   return (
-    <div className="signup-container">
-      <div className="signup-card">
+    <div className="login-container">
+      <div className="login-card">
         {/* Header */}
-        <div className="signup-header">
+        <div className="login-header">
           <Link to="/" className="logo-link">
             <img
               src="https://zerodha.com/static/images/logo.svg"
               alt="Zerodha"
-              className="signup-logo"
+              className="login-logo"
             />
           </Link>
-          <h1 className="signup-title">Create your account</h1>
-          <p className="signup-subtitle">Join thousands of traders and investors</p>
+          <h1 className="login-title">Welcome back</h1>
+          <p className="login-subtitle">Sign in to your account</p>
         </div>
+
+        {/* Success Message from Signup */}
+        {message && (
+          <div className="success-message">
+            <span className="success-icon">✅</span>
+            {message}
+          </div>
+        )}
 
         {/* Error Message */}
         {errors.submit && (
@@ -107,8 +116,8 @@ function SignUp() {
           </div>
         )}
 
-        {/* Signup Form */}
-        <form onSubmit={handleSubmit} className="signup-form">
+        {/* Login Form */}
+        <form onSubmit={handleSubmit} className="login-form">
           <div className="form-group">
             <label htmlFor="username" className="form-label">
               Username
@@ -121,24 +130,9 @@ function SignUp() {
               placeholder="Enter your username"
               value={formData.username}
               onChange={handleChange}
+              autoComplete="username"
             />
             {errors.username && <span className="field-error">{errors.username}</span>}
-          </div>
-
-          <div className="form-group">
-            <label htmlFor="email" className="form-label">
-              Email address
-            </label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              className={`form-input ${errors.email ? 'error' : ''}`}
-              placeholder="Enter your email"
-              value={formData.email}
-              onChange={handleChange}
-            />
-            {errors.email && <span className="field-error">{errors.email}</span>}
           </div>
 
           <div className="form-group">
@@ -150,9 +144,10 @@ function SignUp() {
               id="password"
               name="password"
               className={`form-input ${errors.password ? 'error' : ''}`}
-              placeholder="Create a strong password"
+              placeholder="Enter your password"
               value={formData.password}
               onChange={handleChange}
+              autoComplete="current-password"
             />
             {errors.password && <span className="field-error">{errors.password}</span>}
           </div>
@@ -165,10 +160,10 @@ function SignUp() {
             {loading ? (
               <>
                 <div className="spinner"></div>
-                Creating account...
+                Signing in...
               </>
             ) : (
-              'Create account'
+              'Sign in'
             )}
           </button>
         </form>
@@ -198,13 +193,19 @@ function SignUp() {
           </a>
         </div>
 
-        {/* Login Link */}
-        <div className="login-link">
-          Already have an account? <Link to="/login" className="link">Log in</Link>
+        {/* Signup Link */}
+        <div className="signup-link">
+          Don't have an account? <Link to="/signup" className="link">Sign up</Link>
+        </div>
+
+        {/* Demo Credentials Hint */}
+        <div className="demo-hint">
+          <p>Demo credentials:</p>
+          <small>Username: <code>demo</code> | Password: <code>demo123</code></small>
         </div>
       </div>
     </div>
   );
 }
 
-export default SignUp;
+export default Login;

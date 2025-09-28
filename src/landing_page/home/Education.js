@@ -1,24 +1,52 @@
 import React from "react";
+
+
 function Education() {
+  const educationResources = [
+    {
+      title: "Varsity",
+      description: "The largest online stock market education book in the world covering everything from the basics to advanced trading.",
+      link: "#",
+      linkText: "Explore Varsity"
+    },
+    {
+      title: "TradingQ&A",
+      description: "The most active trading and investment community in India for all your market related queries.",
+      link: "#", 
+      linkText: "Join TradingQ&A"
+    }
+  ];
+
   return (  
-   <div className="container mt-5">
-    <div className="row">
-      <div className="col-6">
-        <img src="media/images/education.svg" alt="Education" style={{width:"70%"}} />
+    <section className="education-section">
+      <div className="education-container">
+        <div className="education-content">
+          {/* Image Section */}
+          <div className="education-image">
+            <img 
+              src="media/images/education.svg" 
+              alt="Stock Market Education" 
+              className="edu-img"
+            />
+          </div>
+
+          {/* Content Section */}
+          <div className="education-info">
+            <h2 className="education-title">Free and open market education</h2>
+            
+            {educationResources.map((resource, index) => (
+              <div key={index} className="education-resource">
+                <p className="resource-description">{resource.description}</p>
+                <a href={resource.link} className="resource-link">
+                  {resource.linkText}
+                  <span className="arrow-icon">→</span>
+                </a>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
-      <div className="col-6 mt-5">
-        <h1 className="fs-2">Free and open market education</h1>
-        <p className="text-muted mt-3">Varsity, the largest online stock market education book in the world covering everything from the basics to advanced trading.</p>
-        <a href="#" className="text-decoration-none text-primary fw-semibold mb-3">
-              Varsity <i className="fa fa-long-arrow-right" aria-hidden="true"></i>
-            </a>
-          <p className="text-muted mt-3">TradingQ&A, the most active trading and investment community in India for all your market related queries.</p>
-          <a href="#" className="text-decoration-none text-primary fw-semibold mt-3">
-              TradingQ&A  <i className="fa fa-long-arrow-right" aria-hidden="true"></i>
-            </a>
-      </div>
-    </div>
-   </div>
+    </section>
   );
 }
 

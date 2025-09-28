@@ -1,40 +1,35 @@
 import React from "react";
 
+
 function RightImg({ imageURL, producName, productDesc, learnMore }) {
   return (
-    <div className="container py-5">
-      <div className="row align-items-center">
-        {/* Text Left */}
-        <div className="col-md-6 mb-4 mb-md-0 ps-md-5">
-          <h2 className="fw-bold mb-3" style={{ fontSize: "2rem" }}>
-            {producName}
-          </h2>
-          <p
-            className="text-muted mb-4"
-            style={{ fontSize: "1.1rem", lineHeight: "1.6" }}
-          >
+    <section className="product-section right-image-section">
+      <div className="product-container">
+        {/* Content Left */}
+        <div className="product-content-wrapper">
+          <h2 className="product-title">{producName}</h2>
+          <p className="product-description">
             {productDesc}
           </p>
-          <a
-            href={learnMore}
-            className="fw-semibold"
-            style={{ color: "#387ed1", textDecoration: "none", fontSize: "1rem" }}
-          >
-            {learnMore}
-          </a>
+          {learnMore && (
+            <div className="action-links">
+              <a href={learnMore} className="action-link learn-link">
+                {learnMore}
+              </a>
+            </div>
+          )}
         </div>
 
         {/* Image Right */}
-        <div className="col-md-6 text-center">
+        <div className="product-image-wrapper">
           <img
             src={imageURL}
             alt={producName}
-            className="img-fluid"
-           
+            className="product-image"
           />
         </div>
       </div>
-    </div>
+    </section>
   );
 }
 

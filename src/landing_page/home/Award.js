@@ -1,47 +1,78 @@
 import React from "react";
 
+
 function Awards() {
+  const tradingFeaturesLeft = [
+    "Futures and Options",
+    "Commodity derivatives", 
+    "Currency derivatives"
+  ];
+
+  const tradingFeaturesRight = [
+    "Stocks & IPOs",
+    "Direct mutual funds",
+    "Bonds and Govt. Securities"
+  ];
+
   return (
-    <div className="container mt-5">
-      <div className="row">
-        <div className="col-6 p-5">
-          <img
-            src="media/images/largestBroker.svg"
-            alt="Award"
-            className="img-fluid"
-          />
-        </div>
-        <div className="col-6 p-5">
-          <h1 className="mt-3">Largest Broker in India</h1>
-          <p className="mb-5">
-            2+ million Zerodha clients contribute to over 15% of all retail
-            order volumes in India daily by trading and investing in.
-          </p>
-          <div className="row">
-            <div className="col-6">
-              <ul >
-                <li className="mb-2">Futures and Options</li>
-                <li className="mb-2">Commodity derivatives</li>
-                <li className="mb-2">Currency derivatives</li>
-              </ul>
+    <section className="awards-section">
+      <div className="awards-container">
+        <div className="awards-content">
+          {/* Image Section */}
+          <div className="awards-image">
+            <img
+              src="media/images/largestBroker.svg"
+              alt="Largest Broker in India Award"
+              className="award-img"
+            />
+          </div>
+
+          {/* Content Section */}
+          <div className="awards-info">
+            <h1 className="awards-title">Largest Broker in India</h1>
+            <p className="awards-description">
+              2+ million Zerodha clients contribute to over 15% of all retail
+              order volumes in India daily by trading and investing in:
+            </p>
+            
+            {/* Features Grid */}
+            <div className="features-grid">
+              <div className="features-column">
+                <ul className="features-list">
+                  {tradingFeaturesLeft.map((feature, index) => (
+                    <li key={index} className="feature-item">
+                      <span className="feature-icon">✓</span>
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              
+              <div className="features-column">
+                <ul className="features-list">
+                  {tradingFeaturesRight.map((feature, index) => (
+                    <li key={index} className="feature-item">
+                      <span className="feature-icon">✓</span>
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
-            <div className="col-6">
-              <ul >
-                <li className="mb-2">Stocks & IPOs</li>
-                <li className="mb-2">Direct mutual funds</li>
-                <li className="mb-2">Bonds and Govt. Securities</li>
-              </ul>
+
+            {/* Press Logos */}
+            <div className="press-logos">
+              <img
+                src="media/images/pressLogos.png"
+                alt="As featured in Economic Times, Money Control, Business Standard, and other leading publications"
+                className="press-img"
+              />
+              <p className="press-caption">As featured in leading financial publications</p>
             </div>
           </div>
-          <img
-            src="media/images/pressLogos.png"
-            alt="Press Logos"
-            className="img-fluid mt-5"
-            style={{ width: "90%" }}
-          />
         </div>
       </div>
-    </div>
+    </section>
   );
 }
 

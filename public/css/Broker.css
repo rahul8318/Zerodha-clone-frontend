@@ -1,0 +1,291 @@
+/* Broker Section */
+.broker-section {
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  padding: 80px 0;
+  border-top: 1px solid #e2e8f0;
+}
+
+.broker-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+.broker-content {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 60px;
+  align-items: start;
+}
+
+/* Main Content */
+.broker-main {
+  background: white;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e2e8f0;
+}
+
+.broker-title {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #387ed1;
+  margin: 0 0 30px 0;
+  font-family: 'Inter', sans-serif;
+  line-height: 1.3;
+  border-bottom: 2px solid #e2e8f0;
+  padding-bottom: 15px;
+}
+
+.broker-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.broker-list li {
+  position: relative;
+  padding: 12px 0 12px 35px;
+  font-size: 1.1rem;
+  color: #4a5568;
+  line-height: 1.6;
+  border-bottom: 1px solid #f7fafc;
+  transition: all 0.3s ease;
+}
+
+.broker-list li:last-child {
+  border-bottom: none;
+}
+
+.broker-list li:hover {
+  color: #2d3748;
+  background: #f8fafc;
+  margin: 0 -20px;
+  padding-left: 55px;
+  border-radius: 6px;
+}
+
+.broker-list li::before {
+  content: "•";
+  position: absolute;
+  left: 15px;
+  color: #387ed1;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+/* Sidebar */
+.broker-sidebar {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e2e8f0;
+  position: sticky;
+  top: 20px;
+}
+
+.sidebar-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #528dd4;
+  margin: 0 0 25px 0;
+  text-align: center;
+  border-bottom: 2px solid #e2e8f0;
+  padding-bottom: 15px;
+}
+
+.charges-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.charge-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  background: #f8fafc;
+  border-radius: 8px;
+  border-left: 4px solid #387ed1;
+  transition: all 0.3s ease;
+}
+
+.charge-item:hover {
+  background: #edf2f7;
+  transform: translateX(5px);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.charge-label {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #4a5568;
+}
+
+.charge-value {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #387ed1;
+  background: white;
+  padding: 4px 12px;
+  border-radius: 20px;
+  border: 1px solid #e2e8f0;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .broker-content {
+    gap: 40px;
+  }
+  
+  .broker-container {
+    padding: 0 32px;
+  }
+}
+
+@media (max-width: 768px) {
+  .broker-section {
+    padding: 60px 0;
+  }
+  
+  .broker-container {
+    padding: 0 24px;
+  }
+  
+  .broker-content {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  
+  .broker-main {
+    padding: 30px 25px;
+  }
+  
+  .broker-sidebar {
+    position: static;
+    padding: 25px;
+  }
+  
+  .broker-title {
+    font-size: 1.75rem;
+  }
+  
+  .broker-list li {
+    font-size: 1.05rem;
+    padding: 10px 0 10px 30px;
+  }
+  
+  .broker-list li:hover {
+    margin: 0 -15px;
+    padding-left: 45px;
+  }
+}
+
+@media (max-width: 480px) {
+  .broker-section {
+    padding: 40px 0;
+  }
+  
+  .broker-container {
+    padding: 0 16px;
+  }
+  
+  .broker-main {
+    padding: 25px 20px;
+  }
+  
+  .broker-sidebar {
+    padding: 20px;
+  }
+  
+  .broker-title {
+    font-size: 1.5rem;
+    margin-bottom: 25px;
+  }
+  
+  .sidebar-title {
+    font-size: 1.25rem;
+    margin-bottom: 20px;
+  }
+  
+  .broker-list li {
+    font-size: 1rem;
+    padding: 8px 0 8px 25px;
+  }
+  
+  .broker-list li::before {
+    left: 10px;
+  }
+  
+  .charge-item {
+    padding: 12px 15px;
+    flex-direction: column;
+    gap: 8px;
+    text-align: center;
+  }
+  
+  .charge-label {
+    font-size: 0.95rem;
+  }
+  
+  .charge-value {
+    font-size: 1rem;
+  }
+}
+
+/* Animation */
+.broker-list li {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.broker-list li:nth-child(1) { animation-delay: 0.1s; }
+.broker-list li:nth-child(2) { animation-delay: 0.2s; }
+.broker-list li:nth-child(3) { animation-delay: 0.3s; }
+.broker-list li:nth-child(4) { animation-delay: 0.4s; }
+.broker-list li:nth-child(5) { animation-delay: 0.5s; }
+.broker-list li:nth-child(6) { animation-delay: 0.6s; }
+
+.charge-item {
+  animation: fadeInRight 0.6s ease-out;
+}
+
+.charge-item:nth-child(1) { animation-delay: 0.1s; }
+.charge-item:nth-child(2) { animation-delay: 0.2s; }
+.charge-item:nth-child(3) { animation-delay: 0.3s; }
+.charge-item:nth-child(4) { animation-delay: 0.4s; }
+.charge-item:nth-child(5) { animation-delay: 0.5s; }
+.charge-item:nth-child(6) { animation-delay: 0.6s; }
+.charge-item:nth-child(7) { animation-delay: 0.7s; }
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Hover effects */
+.broker-main:hover,
+.broker-sidebar:hover {
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+  transform: translateY(-2px);
+  transition: all 0.3s ease;
+}

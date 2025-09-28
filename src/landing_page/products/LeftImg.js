@@ -1,69 +1,64 @@
 import React from "react";
 
+
 function LeftImg({ imageURL, producName, productDesc, tryDemo, learnMore, googlePlay, appStore }) {
   return (
-    <div className="container py-5">
-      <div className="row align-items-center">
+    <section className="product-section left-image-section">
+      <div className="product-container">
         {/* Image Left */}
-        <div className="col-md-6 mb-4 mb-md-0 text-center">
+        <div className="product-image-wrapper">
           <img
             src={imageURL}
             alt={producName}
-            className="img-fluid"
-            style={{ maxHeight: "420px", objectFit: "contain" }}
+            className="product-image"
           />
         </div>
 
-        {/* Text Right */}
-        <div className="col-md-6 ps-md-5">
-          <h2 className="fw-bold mb-3" style={{ fontSize: "2rem" }}>
-            {producName}
-          </h2>
-          <p
-            className="text-muted mb-4"
-            style={{ fontSize: "1.1rem", lineHeight: "1.6" }}
-          >
-            {productDesc}
-          </p>
+        {/* Content Right */}
+        <div className="product-content-wrapper">
+          <h2 className="product-title">{producName}</h2>
+          <p className="product-description">{productDesc}</p>
 
-          {/* Links */}
-          <div className="mb-4">
-            <a
-              href={tryDemo}
-              className="fw-semibold me-4"
-              style={{ color: "#387ed1", textDecoration: "none", fontSize: "1rem" }}
-            >
-              Try demo →
-            </a>
-            <a
-              href={learnMore}
-              className="fw-semibold"
-              style={{ color: "#387ed1", textDecoration: "none", fontSize: "1rem" }}
-            >
-              Learn more →
-            </a>
+          {/* Action Links */}
+          <div className="action-links">
+            {tryDemo && (
+              <a href={tryDemo} className="action-link demo-link">
+                {tryDemo}
+              </a>
+            )}
+            {learnMore && (
+              <a href={learnMore} className="action-link learn-link">
+                {learnMore}
+              </a>
+            )}
           </div>
 
-          {/* Store Badges */}
-          <div className="d-flex align-items-center">
-            <a href={googlePlay}>
-              <img
-                src="media/images/googlePlayBadge.svg"
-                alt="Google Play"
-                style={{ height: "40px" }}
-              />
-            </a>
-            <a href={appStore} className="ms-3">
-              <img
-                src="media/images/appstoreBadge.svg"
-                alt="App Store"
-                style={{ height: "40px" }}
-              />
-            </a>
-          </div>
+          {/* Store Badges - FIXED PATHS */}
+          {(googlePlay || appStore) && (
+            <div className="store-badges">
+              {googlePlay && (
+                <a href={googlePlay} className="store-link">
+                  <img
+                    src="/media/images/googlePlayBadge.svg"
+                    alt="Get it on Google Play"
+                    className="store-badge"
+                  />
+                </a>
+              )}
+              {appStore && (
+                <a href={appStore} className="store-link">
+                  <img
+                    src="/media/images/appstoreBadge.svg"
+                    alt="Download on the App Store"
+                    className="store-badge"
+                  />
+                </a>
+              )}
+            </div>
+          )}
         </div>
       </div>
-    </div>
+    </section>
   );
 }
 

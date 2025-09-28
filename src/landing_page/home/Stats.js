@@ -1,57 +1,87 @@
 import React from "react";
+import { Link } from "react-router-dom";
+
 
 function Stats() {
+  const trustPoints = [
+    {
+      title: "Customer-first always",
+      description: "That’s why 1.6+ crore customers trust Zerodha with ~ ₹6 lakh crores of equity investments, making us India’s largest broker; contributing to 15% of daily retail exchange volumes in India."
+    },
+    {
+      title: "No spam or gimmicks",
+      description: "No gimmicks, spam, “gamification”, or annoying push notifications. High quality apps that you use at your pace, the way you like."
+    },
+    {
+      title: "The Zerodha universe",
+      description: "Not just an app, but a whole ecosystem. Our investments in 30+ fintech startups offer tailored services specific to your needs."
+    },
+    {
+      title: "Do better with money",
+      description: "With initiatives like Nudge and Kill Switch, we don’t just facilitate transactions, but actively help you do better with your money."
+    }
+  ];
+
+  const statsData = [
+    { number: "1.6+", label: "Crore customers" },
+    { number: "₹6L", label: "Crore investments" },
+    { number: "15%", label: "Market volume" },
+    { number: "30+", label: "Fintech partners" }
+  ];
+
   return (
-    <div className="container py-5 mb-5">
-      <div className="row align-items-center">
-        {/* Left Column - Text */}
-        <div className="col-md-6 p-4 mt-5">
-          <h1 className="fs-2 text-dark mb-5">Trust with confidence</h1>
-          <h2 className="fs-4 mb-3">Customer-first always</h2>
-          <p className="text-secondary mb-4">
-            That’s why 1.6+ crore customers trust Zerodha with ~ ₹6 lakh crores of equity investments, 
-            making us India’s largest broker; contributing to 15% of daily retail exchange volumes in India.
-          </p>
+    <section className="stats-section">
+      <div className="stats-container">
+        <div className="stats-content">
+          {/* Left Column - Text Content */}
+          <div className="stats-info">
+            <h1 className="stats-main-title">Trust with confidence</h1>
+            
+            {/* Stats Grid */}
+            <div className="stats-grid">
+              {statsData.map((stat, index) => (
+                <div key={index} className="stat-item">
+                  <span className="stat-number">{stat.number}</span>
+                  <span className="stat-label">{stat.label}</span>
+                </div>
+              ))}
+            </div>
 
-          <h2 className="fs-4  mb-2">No spam or gimmicks</h2>
-          <p className="text-secondary mb-4">
-            No gimmicks, spam, “gamification”, or annoying push notifications. High quality apps that you 
-            use at your pace, the way you like.
-          </p>
+            {/* Trust Points */}
+            <div className="trust-points">
+              {trustPoints.map((point, index) => (
+                <div key={index} className="trust-point">
+                  <h3 className="point-title">{point.title}</h3>
+                  <p className="point-description">{point.description}</p>
+                </div>
+              ))}
+            </div>
+          </div>
 
-          <h2 className="fs-4  mb-2">The Zerodha universe</h2>
-          <p className="text-secondary mb-4">
-            Not just an app, but a whole ecosystem. Our investments in 30+ fintech startups offer tailored 
-            services specific to your needs.
-          </p>
+          {/* Right Column - Image & Links */}
+          <div className="stats-visual">
+            <div className="ecosystem-image">
+              <img
+                src="media/images/ecosystem.png"
+                alt="Zerodha Ecosystem - Trusted by millions of investors"
+                className="eco-img"
+              />
+            </div>
 
-          <h2 className="fs-4  mb-2">Do better with money</h2>
-          <p className="text-secondary">
-            With initiatives like Nudge and Kill Switch, we don’t just facilitate transactions, 
-            but actively help you do better with your money.
-          </p>
-        </div>
-
-        {/* Right Column - Image & Links */}
-        <div className="col-md-6 p-4 text-center mb-3">
-          <img
-            src="media/images/ecosystem.png"
-            alt="Stats"
-            className="img-fluid mb-4"
-            style={{ borderRadius: "10px", width: "100%", maxWidth:"500px" }}
-          />
-
-          <div className="d-flex justify-content-center gap-4 mt-3 flex-wrap">
-            <a href="#" className="text-decoration-none text-primary fw-semibold">
-              Explore our products <i className="fa fa-long-arrow-right" aria-hidden="true"></i>
-            </a>
-            <a href="#" className="text-decoration-none text-primary fw-semibold mb-3">
-              Try Kite demo <i className="fa fa-long-arrow-right" aria-hidden="true"></i>
-            </a>
+            <div className="action-links">
+              <Link to="/products" className="action-link">
+                Explore our products
+                <span className="arrow-icon">→</span>
+              </Link>
+              <Link to="/demo" className="action-link">
+                Try Kite demo
+                <span className="arrow-icon">→</span>
+              </Link>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }
 
